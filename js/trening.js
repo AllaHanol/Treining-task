@@ -43,20 +43,44 @@
 // console.log(formatMessage("Nunc sed turpis a felis in nunc fringilla", 15)); // "Nunc sed turpis..."
 // console.log(formatMessage("Nunc sed turpis a felis in nunc fringilla", 41)); // "Nunc sed turpis a felis in nunc fringilla"
 
-const hours = 14;
-const minutes = 26;
-let timeString;
-if(minutes===0){
-    timeString=`${hours} г.`
-} else {`'${hours} г. ${minutes} хв.'`}
+// const hours = 14;
+// const minutes = 26;
+// let timeString;
+// if(minutes===0){
+//     timeString=`${hours} г.`
+// } else {`'${hours} г. ${minutes} хв.'`}
 
-console.log(timeString);
-const dog = {
-    name: "Mango",
-    age: 3,
-    isGoodBoy: true,
-  };
+// console.log(timeString);
+// const dog = {
+//     name: "Mango",
+//     age: 3,
+//     isGoodBoy: true,
+//   };
   
-  const json = JSON.stringify(dog);
-  console.log(json); // '{"name":"Mango","age":3,"isGoodBoy":true}'
+//   const json = JSON.stringify(dog);
+//   console.log(json); // '{"name":"Mango","age":3,"isGoodBoy":true}'
   
+
+//  const technologies = ["HTML", "CSS", "JavaScript", "React", "Node"];
+// const list = document.querySelector(".list");
+
+// const markup = technologies
+//   .map((technology) => `<li class="list-item">${technology}</li>`)
+//   .join("");
+
+// // Check the console, you'll see a single string with HTML tags
+// console.log(markup);
+
+// // Adding all the markup in one operation
+// list.innerHTML = markup;
+// const list = document.querySelector(".list");
+
+// const newTechnologies = ["React", "TypeScript", "Node.js"];
+// const markup = newTechnologies
+//   .map((technology) => `<li class="list-item new">${technology}</li>`)
+//   .join("");
+
+// list.insertAdjacentHTML("beforeend", markup);
+// list.insertAdjacentHTML("beforebegin", "<h2>Popular technologies</h2>");
+
+console.log(localStorage);
