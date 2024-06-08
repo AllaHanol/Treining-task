@@ -83,4 +83,16 @@
 // list.insertAdjacentHTML("beforeend", markup);
 // list.insertAdjacentHTML("beforebegin", "<h2>Popular technologies</h2>");
 
-console.log(localStorage);
+// console.log(localStorage);
+
+const date = new Date();
+
+console.log(date);
+// "Fri Jun 18 2021 15:01:35 GMT+0300 (Eastern European Summer Time)"
+
+const date = new Date();
+
+console.log(date);
+// "Fri Jun 18 2021 15:01:35 GMT+0300 (Eastern European Summer Time)"
+
+
