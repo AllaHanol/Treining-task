@@ -85,14 +85,33 @@
 
 // console.log(localStorage);
 
-const date = new Date();
+// const date = new Date();
 
-console.log(date);
+// console.log(date);
 // "Fri Jun 18 2021 15:01:35 GMT+0300 (Eastern European Summer Time)"
 
-const date = new Date();
+// const date = new Date();
 
-console.log(date);
+// console.log(date);
 // "Fri Jun 18 2021 15:01:35 GMT+0300 (Eastern European Summer Time)"
 
+// - Використовуй prompt та повертай значення звідти.
+// - Створи функцію, яка буде набувати значення з prompt і всередині якої буде проміс.
+// Якщо значення не є числом, відхиляй проміс та логіруй "error".
+// Якщо значення парне, вирішуй проміс та повертай "even" через 1 секунду.
+// Якщо значення не парне, вирішуй проміс та повертай "odd" через 2 секунди.
+const data = Number(prompt(`введіть число:`));
+checkNumber(data).then(console.log)
+.catch(console.log);
 
+function checkNumber(data){
+return new Promise ((resolve, reject)=>{
+    if (!data ){
+reject ('error')
+    } else if(data%2 === 0){
+       setTimeout(() => {resolve(`even`),1000})  
+    } else {
+        ssetTimeout(() => {resolve(`odd`),2000})
+    }
+})
+}
