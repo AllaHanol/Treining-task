@@ -100,18 +100,90 @@
 // Якщо значення не є числом, відхиляй проміс та логіруй "error".
 // Якщо значення парне, вирішуй проміс та повертай "even" через 1 секунду.
 // Якщо значення не парне, вирішуй проміс та повертай "odd" через 2 секунди.
-const data = Number(prompt(`введіть число:`));
-checkNumber(data).then(console.log)
-.catch(console.log);
+// const data = Number(prompt(`введіть число:`));
+// checkNumber(data).then(console.log)
+// .catch(console.log);
 
-function checkNumber(data){
-return new Promise ((resolve, reject)=>{
-    if (!data ){
-reject ('error')
-    } else if(data%2 === 0){
-       setTimeout(() => {resolve(`even`),1000})  
-    } else {
-        ssetTimeout(() => {resolve(`odd`),2000})
+// function checkNumber(data){
+// return new Promise ((resolve, reject)=>{
+//     if (!data ){
+// reject ('error')
+//     } else if(data%2 === 0){
+//        setTimeout(() => {resolve(`even`),1000})  
+//     } else {
+//         ssetTimeout(() => {resolve(`odd`),2000})
+//     }
+// })
+// }
+// Створи перелік справ.
+// Є інпут, який вводиться назва завдання.
+// Після натискання на кнопку "Додати" завдання додається до списку #list.
+// Поруч із кожним завданням знаходиться кнопка "Видалити", щоб можна було
+// Забрати завдання зі списку.
+// Список із завданнями має бути доступним після перезавантаження сторінки.
+
+const refs = {
+    taskForm: document.querySelector('.task-form'),
+    listOfTasks: document.querySelector('.list-tasks'),
+  };
+  const STORAGE_KEY = 'data';
+  let tasks = loadFromLocalStorage(STORAGE_KEY);
+  renderTaskList(tasks);
+  refs.taskForm.addEventListener('submit', onSubmitForm);
+  refs.listOfTasks.addEventListener('click', onClickBtnRemove);
+  function onSubmitForm(e) {
+    e.preventDefault();
+    const userInput = refs.taskForm.userTask.value.trim();
+    tasks.push(userInput);
+    renderTaskList(tasks);
+    saveToLS(tasks);
+  }
+
+  function renderTaskList(tasks) {
+    const markup = tasks
+      .map(
+        (task, index) =>
+          `<li class="list-item">${task}<button type="button" data-id="${index}">X</button></li>`
+      )
+      .join('');
+    refs.listOfTasks.innerHTML = markup;
+  }
+  function onClickBtnRemove(e) {
+    if (e.target.nodeName !== 'BUTTON') {
+      return;
     }
-})
-}
+    const index = Number(e.target.dataset.id);
+    tasks = tasks.filter((task, idx) => {
+      return index !== idx;
+    });
+    renderTaskList(tasks);
+    saveToLS(tasks);
+  }
+  function saveToLS(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+  function loadFromLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key)) || [];
+  }
+
+  !==================
+  // Задача про обробку даних користувача:
+// Уявіть, що у вас є веб - форма, де користувачі можуть вводити свої дані, такі як ім'я, адреса електронної пошти та вік.
+// Ваша задача - збирати ці дані, використовуючи асинхронну функцію, яка повертає проміс, який містить об'єкт з даними користувача.
+// Потім зберіть ці об'єкти користувачів у масив та відобразіть їх на сторінці.
+
+let users = []; // Функція для отримання даних користувача 
+async function getUserData(event) { event.preventDefault(); // Запобігає перезавантаженню сторінки // Отримуємо дані з форми 
+const name = document.getElementById('name').value; 
+const email = document.getElementById('email').value; 
+const age = document.getElementById('age').value; // Створюємо об'єкт користувача 
+const user = { name, email, age }; // Повертаємо проміс, який містить об'єкт з даними користувача 
+return new Promise((resolve) => { resolve(user); }); }
+/ Обробник події для форми document.getElementById('userForm').addEventListener('submit', async (event) => { const user = await getUserData(event); // Додаємо користувача до масиву 
+users.push(user); // Оновлюємо відображення даних користувачів на сторінці 
+displayUsers(); }); // Функція для відображення даних користувачів 
+function displayUsers() { const userList = document.getElementById('userList'); 
+userList.innerHTML = ''; // Очищаємо попередній список // Створюємо елементи списку для кожного користувача 
+users.forEach((user, index) => { const li = document.createElement('li'); 
+li.textContent = `Ім'я: ${user.name}, Електронна пошта: ${user.email}, Вік: ${user.age}`; 
+userList.appendChild(li); }); }
