@@ -187,3 +187,127 @@ userList.innerHTML = ''; // Очищаємо попередній список /
 users.forEach((user, index) => { const li = document.createElement('li'); 
 li.textContent = `Ім'я: ${user.name}, Електронна пошта: ${user.email}, Вік: ${user.age}`; 
 userList.appendChild(li); }); }
+
+
+const form = document.querySelector('.form');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const delay = parseInt(form.elements.delay.value);
+  const state = form.elements.state.value;
+  createPromise(delay, state)
+    .then((delay) => {
+      iziToast.success({
+        color: 'green',
+				icon: 'ico-success',
+        position: 'topRight',
+        title: 'Success',
+        titleColor: '#fff',
+        titleSize: '16',
+        titleLineHeight: '24',
+        message: '`✅ Fulfilled promise in ${delay}ms`',
+        messageColor: '#fff',
+        messageSize: '16',
+        messageLineHeight: '24',
+        progressBarColor: '#326101',                   
+        backgroundColor: '#59A10D',
+      });
+    })
+    .catch((delay) => {
+      iziToast.error ({
+        color: 'red',
+				icon: 'ico-error',
+        position: 'topRight',
+        title: 'Error',
+        titleColor: '#fff',
+        titleSize: '16',
+        titleLineHeight: '24',
+        message: '`❌ Rejected promise in ${delay}ms`',
+        messageColor: '#fff',
+        messageSize: '16',
+        messageLineHeight: '24',
+        progressBarColor: '#B51B1B',                   
+        backgroundColor: '#EF4040',
+      });
+    });
+});
+function createPromise(delay, state) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (state === 'fulfilled') {
+        resolve(delay);
+      } else {
+        reject(delay);
+      }
+    }, delay);
+  });
+}
+
+const inputEl = document.querySelector('.form');
+
+
+inputEl.addEventListener('submit', promiseFoo);
+
+function promiseFoo(e) {
+  e.preventDefault();
+
+  let delay = e.target.delay.value;
+  let status = e.target.state.value
+
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (status === 'fulfilled') {
+        resolve(delay);
+      } else {
+        reject(delay)
+      }
+    }, delay);
+  });
+
+  createPromise(delay, state)
+  .then((delay) => {
+    iziToast.success({
+      color: 'green',
+      icon: 'ico-success',
+      position: 'topRight',
+      title: 'Success',
+      titleColor: '#fff',
+      titleSize: '16',
+      titleLineHeight: '24',
+      message: `✅ Fulfilled promise in ${delay} ms`,
+      messageColor: '#fff',
+      messageSize: '16',
+      messageLineHeight: '24',
+      progressBarColor: '#326101',
+      backgroundColor: '#59A10D',
+    });
+  })
+  .catch((delay) => {
+    iziToast.error({
+      color: 'red',
+      icon: 'ico-error',
+      position: 'topRight',
+      title: 'Error!',
+      titleColor: '#fff',
+      titleSize: '16',
+      titleLineHeight: '24',
+      message: `❌ Rejected promise in ${delay} ms`,
+      messageColor: '#fff',
+      messageSize: '16',
+      messageLineHeight: '24',
+      progressBarColor: '#B51B1B',
+      backgroundColor: '#EF4040',
+    });
+  })
+};
+
+function createPromise (delay, state){
+  return new Promise((resolve, reject) => {
+    setTimeout(()=>{
+      if (state === 'fulfilled'){
+        resolve(delay);
+      } else {
+        reject(delay);
+      }
+     }, delay);
+    });
+  }
