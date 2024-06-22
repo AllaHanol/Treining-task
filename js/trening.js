@@ -320,17 +320,17 @@ import 'izitoast/dist/css/iziToast.min.css';
 import '../css/timer.css';
 import imageUrl from '../img/izitoast/bi_x-octagon.png'
 
-const refs = {
-  datetimePicker: document.querySelector('#datetime-picker'),
-  input: document.querySelector('#datetime-picker'),
-  startBtn: document.querySelector('[data-start]'),
-  daysEl: document.querySelector('[data-days]'),
-  hoursEl: document.querySelector('[data-hours]'),
-  minutesEl: document.querySelector('[data-minutes]'),
-  secondsEl: document.querySelector('[data-seconds]'),
-};
+// const refs = {
+//   datetimePicker: document.querySelector('#datetime-picker'),
+//   input: document.querySelector('#datetime-picker'),
+//   startBtn: document.querySelector('[data-start]'),
+//   daysEl: document.querySelector('[data-days]'),
+//   hoursEl: document.querySelector('[data-hours]'),
+//   minutesEl: document.querySelector('[data-minutes]'),
+//   secondsEl: document.querySelector('[data-seconds]'),
+// };
 
-let initTime = 0;
+// let initTime = 0;
 
 // refs.startBtn.disabled = true;
 
@@ -420,4 +420,4 @@ let initTime = 0;
 //     }
 //   },
 // };
-flatpickr('#datetime-picker', flatpickrOptions);
+// flatpickr('#datetime-picker', flatpickrOptions);
